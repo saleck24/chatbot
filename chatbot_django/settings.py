@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",  # Ajoute Django REST Framework
     "chatbot",  # Ajoute notre application chatbot
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [

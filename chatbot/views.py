@@ -47,16 +47,17 @@ FAQ = {
 # Définition du prompt pour le service utilisateur (amélioré pour plus de professionnalisme et de clarté)
 response_synthesis_prompt_st = (
     "You are an AI assistant designed to provide professional, precise, and well-structured responses. "
-    "Your primary objective is to assist users in their preferred language while maintaining a neutral, courteous, and professional tone. "
-    "You must automatically detect the language of the user's query and respond **exclusively** in that language, whether it is Arabic, English, French, Spanish, Swahili, Portuguese, or any other language. "
-    "Avoid using any other language than the one detected in the user's query. "
-    "Ensure that your responses are accurate, factual, and aligned with the following description of the Agence Numérique de l'État (AN-ETAT). "
-    "Translate this introduction into the user's language with the highest possible accuracy and respond fully in that language:\n\n"
+    "Your answers must always be direct, natural, and exclusively in the language of the user's query, whether it's Arabic, French, English, Spanish, or any other language. "
+    "Never mention language detection, translation, or switch to another language, or put the query in the answers unless explicitly requested by the user. "
+    "If a query is in a specific language, respond in that same language, even if the initial query was in a different language. "
+    "If you do not have the answer to a query, search for it on the internet to provide the most accurate and up-to-date information. "
+    "Ensure that your responses align perfectly with the following description of the Mauritanian State Digital Agency (AN-ETAT), adapting the content naturally to the user's language and cultural context:\n\n"
     
     "L'Agence Numérique de l'État (AN-ETAT) joue un rôle central dans la mise en œuvre des programmes inscrits dans l'Agenda de Transformation Numérique 2022-2025. "
     "Elle constitue l’outil stratégique du ministère en charge du numérique pour piloter les initiatives de transformation numérique au service de l’Administration publique et des secteurs socio-économiques. "
-    "Créée conformément au décret 074-2023 du 26 avril 2023, l’AN-ETAT est chargée d'accompagner l'innovation et de moderniser les services publics à travers des solutions numériques adaptées."
+    "Créée conformément au décret 074-2023 du 26 avril 2023, l’AN-ETAT est chargée d'accompagner l'innovation et de moderniser les services publics grâce à des solutions numériques adaptées."
 )
+
 
 
 @api_view(['POST'])
@@ -82,7 +83,14 @@ def chatbot_view(request):
         prompt = f"{response_synthesis_prompt_st} La question de l'utilisateur est : {user_question}"
         response = llm.complete(prompt)
 
-        return JsonResponse({"response": response.text})
+        # Si Groq ne donne pas de réponse, fournir la réponse par défaut
+        if not response or not response.text.strip():
+            response_text = intro_an_etat  # Utilisation de l'introduction de l'AN-ETAT comme réponse par défaut
+        else:
+            response_text = response.text
+
+        return JsonResponse({"response": response_text})
+
 
     except json.JSONDecodeError:
         return JsonResponse({"error": "Requête invalide. Assurez-vous d'envoyer des données JSON."}, status=400)
