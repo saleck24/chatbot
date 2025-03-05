@@ -9,7 +9,7 @@ if [ -f devops/.env ]; then
     source devops/.env
     set +a
 else
-    echo "⚠️  .env file not found!"
+    echo "⚠  .env file not found!"
     exit 1
 fi
 
@@ -32,13 +32,10 @@ clone_repository() {
 }
 
 copy_devops_and_configs() {
-    # Ensure the remote `devops/` directory exists before copying files
-    ssh -p $SSH_PORT ${SSH_USER}@${DEPLOYMENT_SERVER} "mkdir -p ${PROJECT_DIR}/$repository/devops"
-
-    # Copy the necessary files
     scp -P $SSH_PORT devops/Dockerfile ${SSH_USER}@${DEPLOYMENT_SERVER}:${PROJECT_DIR}/$repository/devops/Dockerfile
     scp -P $SSH_PORT devops/compose.yml ${SSH_USER}@${DEPLOYMENT_SERVER}:${PROJECT_DIR}/$repository/devops/compose.yml
     scp -P $SSH_PORT devops/.env ${SSH_USER}@${DEPLOYMENT_SERVER}:${PROJECT_DIR}/$repository/devops/.env
+    scp -P $SSH_PORT requirements.txt ${SSH_USER}@${DEPLOYMENT_SERVER}:${PROJECT_DIR}/$repository/requirements.txt
 }
 
 build_and_run_compose() {
