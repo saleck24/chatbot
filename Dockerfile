@@ -1,17 +1,20 @@
-# Use the official Python image as a parent image
-FROM python:3.10
+# Use a lightweight Python base image
+FROM python:3.12.6-slim
 
-# Set the working directory in the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app/
+# Copy requirements.txt first to leverage Docker caching
+COPY requirements.txt .
 
-# Install any dependencies
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 8000 for Django
+# Copy the full Django project
+COPY . .
+
+# Expose Django’s port
 EXPOSE 8000
 
-# Run the Django application
+# Run Django app
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
