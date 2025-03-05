@@ -4,14 +4,12 @@ FROM python:3.12.6-slim
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy requirements.txt first to leverage Docker caching
-COPY requirements.txt .
-
-# Install dependencies
+# Copy and install dependencies
+COPY ./requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the full Django project
-COPY . .
+COPY . /app/
 
 # Expose Django’s port
 EXPOSE 8000
