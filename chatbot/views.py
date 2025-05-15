@@ -34,7 +34,7 @@ intro_an_etat = (
 FAQ = {
     "Quels sont les services proposés par l'AN-ETAT ?": "L'AN-ETAT offre des services numériques comme l'e-administration, la cybersécurité et la gestion des infrastructures IT.",
     "Comment contacter l'AN-ETAT ?": "Vous pouvez contacter l'AN-ETAT via leur site officiel ou par email à contact@an-etat.mr.",
-    "Quels sont les horaires d'ouverture ?": "L'AN-ETAT est ouvert du lundi au vendredi de 08h00 à 17h00.",
+    "Quels sont les horaires d'ouverture de l'agence numérique de l'état?": "L'AN-ETAT est ouvert du lundi au vendredi de 08h00 à 17h00.",
     "Comment accéder aux services en ligne ?": "Vous pouvez accéder aux services en ligne via le portail officiel de l'AN-ETAT : www.an-etat.mr.",
     "Quels sont les objectifs de l'Agence Numérique de l'État ?": "L'Agence Numérique de l'État vise à piloter la transformation numérique en Mauritanie en mettant en œuvre des projets stratégiques pour améliorer l'efficacité et la productivité.",
     "Comment l'Agence Numérique de l'État facilite-t-elle la numérisation de l'administration ?": "Elle simplifie les procédures gouvernementales et améliore la qualité des services publics grâce à la digitalisation.",
@@ -44,7 +44,7 @@ FAQ = {
     "Quelle est la vision à long terme de la transformation numérique ?": "La mise en œuvre d'une stratégie nationale durable pour un avenir numérique avancé et aligné sur les tendances mondiales."
 }
 
-# Définition du prompt pour le service utilisateur (amélioré pour plus de professionnalisme et de clarté)
+# Définition du prompt pour le service utilisateur
 response_synthesis_prompt_st = (
     "You are an AI assistant designed to provide professional, precise, and well-structured responses. "
     "Your answers must always be direct, natural, and exclusively in the language of the user's query, whether it's Arabic, French, English, Spanish, or any other language. "
@@ -62,7 +62,7 @@ response_synthesis_prompt_st = (
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-#@csrf_exempt   Désactiver CSRF pour simplifier les tests
+#@csrf_exempt  # Désactiver CSRF pour simplifier les tests
 def chatbot_view(request):
     """
     API du chatbot qui répond aux questions des utilisateurs.
