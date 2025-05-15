@@ -62,7 +62,7 @@ response_synthesis_prompt_st = (
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-@csrf_exempt  # Désactiver CSRF pour simplifier les tests
+#@csrf_exempt   Désactiver CSRF pour simplifier les tests
 def chatbot_view(request):
     """
     API du chatbot qui répond aux questions des utilisateurs.
