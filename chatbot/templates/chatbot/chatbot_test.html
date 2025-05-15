@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <!-- Message de bienvenue -->
-    <div id="chatbot-welcome" class="chatbot-welcome">
-        Bonjour, comment puis-je vous aider ?
-    </div>
     <!-- Chatbot Icon -->
     <div class="chatbot-icon" onclick="toggleChatbox()">
         <img src="{% static 'images/chatbot.gif' %}" alt="Chatbot">
@@ -27,17 +23,17 @@
             <textarea id="user-input" placeholder="Votre message..."></textarea>
             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
-    </div>  
+    </div>     
 
     <script>
         function toggleChatbox() {
             const chatbox = document.getElementById('chat-box-container');
             const chatBox = document.getElementById("chat-box");
-            const welcomeMessage = document.getElementById('chatbot-welcome');
+            //const welcomeMessage = document.getElementById('chatbot-welcome');
 
             if (chatbox.style.display === 'none' || chatbox.style.display === '') {
                 chatbox.style.display = 'block';
-                welcomeMessage.style.display = 'none'; // Cache le message de bienvenue
+               //welcomeMessage.style.display = 'none'; // Cache le message de bienvenue
 
                  // Vérifier si le message de bienvenue a déjà été affiché
                 if (!chatBox.dataset.welcomeMessage) {
@@ -46,7 +42,7 @@
                 }
             } else {
                 chatbox.style.display = 'none';
-                welcomeMessage.style.display = 'block'; // Réaffiche le message si la fenêtre se ferme
+               // welcomeMessage.style.display = 'block'; // Réaffiche le message si la fenêtre se ferme
             }
         }
 
@@ -110,6 +106,8 @@
             document.getElementById('user-input').value = '';
         }
 
+        // enlever cette partie du code parce qu'elle ne sert à rien. Et Enlever le Crsf exempt.
+        //si les question sont envoyé bien en json el sérializer va bien les recevoir et plus besoin de ceci.
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
