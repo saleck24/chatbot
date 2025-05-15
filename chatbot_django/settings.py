@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7wei+p9kpy3m_^y8xi78=mum@w%4=2!&7!b_4l=u&@(n&gjnv7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # mettre false après déploiement.
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] #mettre le liens ou @ip du déploiement
 
 
 # Application definition
@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',#à ajouter
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -65,7 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.template.context_processors.csrf',
+                'django.template.context_processors.csrf',# ligne à ajouter
                 'django.contrib.messages.context_processors.messages',
             ],
         },
