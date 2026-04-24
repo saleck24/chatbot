@@ -20,6 +20,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('chatbot/', include('chatbot.urls')), #route vers le back(IA chatbot)
-    path('chatbot-front/', TemplateView.as_view(template_name='chatbot/chatbot_test.html')),# route vers le front(tester le front avec le back)
+    path('api/chatbot/', include('chatbot.urls')), # route vers l'API (IA chatbot)
+    path('chatbot-test/', TemplateView.as_view(template_name='chatbot/chatbot_test.html')), # route vers l'interface de test
 ]

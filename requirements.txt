@@ -6,10 +6,10 @@ anyio==4.8.0
 asgiref==3.8.1
 attrs==25.1.0
 beautifulsoup4==4.13.3
-cairocffi==1.6.1
+cairocffi>=1.6.1
 CairoSVG==2.7.1
 certifi==2025.1.31
-cffi==1.16.0
+cffi>=1.16.0
 charset-normalizer==3.3.2
 click==8.1.8
 colorama==0.4.6
@@ -60,11 +60,11 @@ mypy-extensions==1.0.0
 nest-asyncio==1.6.0
 networkx==3.4.2
 nltk==3.9.1
-numpy==1.26.2
+numpy>=1.26.2
 openai==1.63.2
 packaging==24.2
-pandas==2.2.3
-pillow==10.2.0
+pandas>=2.2.3
+pillow>=10.2.0
 platformdirs==4.3.6
 propcache==0.2.1
 pycparser==2.21
@@ -90,7 +90,7 @@ tiktoken==0.9.0
 tinycss2==1.2.1
 tokenizers==0.21.0
 tqdm==4.67.1
-transformers==4.49.0
+transformers>=4.49.0
 typing-inspect==0.9.0
 typing_extensions==4.12.2
 tzdata==2024.2

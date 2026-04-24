@@ -3,27 +3,27 @@
 ## 🌟 Aperçu
 Un **chatbot intelligent basé sur l'IA** conçu pour l'Agence Numérique de l'État (AN-ETAT) en Mauritanie. Ce système combine des technologies de pointe en traitement du langage naturel (NLP) et l'intelligence artificielle pour offrir un support utilisateur automatisé, multilingue et contextuel.
 
-Le chatbot est alimenté par **Groq LLM (Llama 3.8B)** intégré à **LlamaIndex**, permettant une compréhension profonde et des réponses précises adaptées à chaque utilisateur.
+Le chatbot est alimenté par **Groq LLM (Llama 3.3-70B-versatile)** intégré à **LlamaIndex**, permettant une compréhension profonde et des réponses précises adaptées à chaque utilisateur.
 
 ---
 
 ## ✨ Fonctionnalités Principales
 
 ### 🧠 Intelligence Artificielle & NLP
-- **Intégration Groq LLM** : Utilise le modèle Llama 3.8B pour une compréhension contextuelle avancée
+- **Intégration Groq LLM** : Utilise le modèle Llama 3.3-70B-versatile pour une compréhension contextuelle avancée
 - **LlamaIndex Framework** : Architecture moderne pour la gestion de documents et requêtes complexes
 - **Traitement Multilingue** : Répond en arabe, français, anglais, espagnol et autres langues
 - **Détection Automatique de Langue** : Identifie la langue de l'utilisateur et répond dans la même langue
 - **Recherche Sémantique** : Compréhension profonde du sens, pas seulement des mots-clés
 
-### 📚 Système de FAQ Intelligent
-- **Correspondance Approximative** : Utilise `difflib.get_close_matches()` pour trouver les réponses similaires
-- **10+ Questions Fréquentes** : Base de connaissances pré-configurée sur AN-ETAT
-- **Seuil de Confiance** : Cutoff de 0.7 pour garantir la pertinence des réponses
-- **Réponses Contextualisées** : Informations précises sur les services, horaires et contacts
+### 📚 Architecture RAG (Retrieval-Augmented Generation)
+- **Framework LlamaIndex** : Gère l'indexation et la récupération intelligente des connaissances.
+- **Base de Connaissances Bilingue** : Documentation structurée en français et anglais pour une précision maximale.
+- **Réponses Contextualisées** : L'IA génère des réponses basées sur les données réelles de l'AN-ETAT (services, horaires, décrets).
 
 ### 🔐 Sécurité & Architecture
 - **API REST Sécurisée** : Endpoints POST avec validation CSRF
+- **Serveur de Production** : Déploiement optimisé avec Gunicorn et WhiteNoise pour le service des fichiers statiques
 - **Gestion des Erreurs** : Gestion complète des exceptions JSON et API
 - **Variables d'Environnement** : Gestion sécurisée des clés API via `.env` et `python-dotenv`
 - **CORS Headers** : Authentification cross-origin pour intégration multidomaine
@@ -156,6 +156,20 @@ chatbot/
 7. **Accédez à l'application :**
    - Interface test : `http://localhost:8000/chatbot-test/`
    - API endpoint : `http://localhost:8000/api/chatbot/`
+
+---
+
+## 🐳 Lancement avec Docker (Recommandé)
+
+Le projet est entièrement dockerisé pour un lancement rapide et sans configuration locale complexe.
+
+1.  **Prérequis** : Docker et Docker Compose installés.
+2.  **Configurez votre `.env`** : Assurez-vous d'avoir votre `GROQ_API_KEY`.
+3.  **Lancez le projet** :
+    ```bash
+    docker-compose up --build
+    ```
+4.  **Accédez à l'application** : `http://localhost:8000/chatbot-test/`
 
 ---
 

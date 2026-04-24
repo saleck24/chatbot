@@ -46,11 +46,16 @@
             }
         }
 
+        function getTimestamp() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+        }
+
         function showWelcomeMessage() {
             var chatBox = document.getElementById("chat-box");
             var welcomeMessageDiv = document.createElement("div");
             welcomeMessageDiv.className = "bot-response";
-            welcomeMessageDiv.innerText = "Bonjour, comment puis-je vous aider aujourd'hui ?";
+            welcomeMessageDiv.innerHTML = `Bonjour, comment puis-je vous aider aujourd'hui ? <span class="message-time">${getTimestamp()}</span>`;
             chatBox.appendChild(welcomeMessageDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
         }
@@ -64,7 +69,7 @@
             // Afficher le message de l'utilisateur
             var userMessageDiv = document.createElement("div");
             userMessageDiv.className = "user-message";
-            userMessageDiv.innerText = userMessage;
+            userMessageDiv.innerHTML = `${userMessage} <span class="message-time">${getTimestamp()}</span>`;
             chatBox.appendChild(userMessageDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -77,7 +82,7 @@
 
             // Envoyer le message au backend
             $.ajax({
-                url: '/chatbot/',
+                url: '/api/chatbot/',
                 type: 'POST',
                 contentType: 'application/json',
                 headers: { 'X-CSRFToken': csrftoken },
@@ -89,7 +94,7 @@
                     // Afficher la réponse du chatbot
                     var botMessageDiv = document.createElement("div");
                     botMessageDiv.className = "bot-response";
-                    botMessageDiv.innerText = response.response;
+                    botMessageDiv.innerHTML = `${response.response} <span class="message-time">${getTimestamp()}</span>`;
                     chatBox.appendChild(botMessageDiv);
                     chatBox.scrollTop = chatBox.scrollHeight;
                 },
@@ -97,7 +102,7 @@
                     typingMessage.remove();
                     var errorMessageDiv = document.createElement("div");
                     errorMessageDiv.className = "bot-response";
-                    errorMessageDiv.innerText = "Désolé, une erreur s'est produite.";
+                    errorMessageDiv.innerHTML = `Désolé, une erreur s'est produite. <span class="message-time">${getTimestamp()}</span>`;
                     chatBox.appendChild(errorMessageDiv);
                 }
             });
